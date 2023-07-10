@@ -1,0 +1,101 @@
+import { GenreService } from "../services/index.js";
+import { httpResponse } from "../utils/index.js";
+
+export const GenreController = {
+    getAll: async (req, res) => {
+        try {
+            const data = await GenreService.getAll();
+            console.log(data);
+
+            return httpResponse.SUCCESS(res, data);
+        } catch (error) {
+            return httpResponse.INTERNAL_SERVER_ERROR(res, error);
+        }
+    },
+    get: async (req, res) => {
+        try {
+            const data = await GenreService.get(req.params.id);
+            if (!data) {
+                return httpResponse.NOT_FOUND(res, data)
+            }
+            else {
+                return httpResponse.SUCCESS(res, data);
+            }
+
+        } catch (error) {
+            return httpResponse.INTERNAL_SERVER_ERROR(res, error);
+        }
+    },
+    getSeries:async (req,res)=>{
+       
+        try {
+			const data = await GenreService.getSeries(req.params.id);
+			if (!data) {
+				return httpResponse.NOT_FOUND(res);
+			} else {
+				return httpResponse.SUCCESS(res, data);
+			}
+		} catch (error) {
+			return httpResponse.INTERNAL_SERVER_ERROR(res, error);
+		}
+    },
+    getSeasons:async (req,res)=>{
+        try {
+			const data = await GenreService.getSeasons(req.params.id);
+			if (!data) {
+				return httpResponse.NOT_FOUND(res);
+			} else {
+				return httpResponse.SUCCESS(res, data);
+			}
+		} catch (error) {
+			return httpResponse.INTERNAL_SERVER_ERROR(res, error);
+		}
+    },
+    add: async (req, res) => {
+        try {
+            console.log(req.body);
+
+            const data = await GenreService.add(req.body);
+            if(data=="This genre is already available"){
+                return httpResponse.CONFLICT(res, data);
+            }else{
+                return httpResponse.CREATED(res, data);
+            }
+          
+        } catch (error) {
+            return httpResponse.INTERNAL_SERVER_ERROR(res, error);
+        }
+    },
+    delete: async (req, res) => {
+        try {
+            console.log(req.params.id);
+
+            const data = await GenreService.delete(req.params.id);
+            if (!data) {
+                return httpResponse.NOT_FOUND(res, data)
+            }
+            else {
+                return httpResponse.SUCCESS(res, data);
+            }
+        } catch (error) {
+            return httpResponse.INTERNAL_SERVER_ERROR(res, error);
+        }
+    },
+    update: async (req, res) => {
+        console.log(req.params.id);
+
+
+        try {
+            console.log(req.params.id);
+            const data = await GenreService.update(req.params.id, req.body);
+            if (!data) {
+                return httpResponse.NOT_FOUND(res, data)
+            }
+            else {
+                return httpResponse.SUCCESS(res, data);
+            }
+        } catch (error) {
+            return httpResponse.NOT_FOUND(res, error);
+        }
+    }
+};
