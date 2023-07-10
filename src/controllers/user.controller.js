@@ -5,7 +5,7 @@ export const UserController = {
 	getAll: async (req, res) => {
 		try {
 			const data = await UserService.getAll();
-			console.log(data);
+		
 
 			return httpResponse.SUCCESS(res, data);
 		} catch (error) {
@@ -82,7 +82,7 @@ export const UserController = {
 	},
 	delete: async (req, res) => {
 		try {
-			console.log(req.params.id);
+			
 
 			const data = await UserService.delete(req.params.id);
 			// const data = await UserService.get(req.params.id);
@@ -112,11 +112,11 @@ export const UserController = {
 		}
 	},
 	update: async (req, res) => {
-		console.log(req.params.id);
+		
 
 
 		try {
-			console.log(req.params.id);
+		
 			const data = await UserService.update(req.params.id, req.body);
 			if (!data) {
 				return httpResponse.NOT_FOUND(res, data)

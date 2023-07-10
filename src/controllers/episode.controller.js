@@ -5,7 +5,7 @@ export const EpisodeController = {
     getAll: async (req, res) => {
         try {
             const data = await EpisodeService.getAll();
-            console.log(data);
+        
 
             return httpResponse.SUCCESS(res, data);
         } catch (error) {
@@ -43,8 +43,7 @@ export const EpisodeController = {
 
     add: async (req, res) => {
         try {
-            console.log(req.body);
-
+          
             const data = await EpisodeService.add(req.body);
             if(data=="This episode is already available"){
                 return httpResponse.CONFLICT(res, data);
@@ -58,8 +57,7 @@ export const EpisodeController = {
     },
     delete: async (req, res) => {
         try {
-            console.log(req.params.id);
-
+       
             const data = await EpisodeService.delete(req.params.id);
             // const data = await EpisodeService.get(req.params.id);
             if (!data) {
@@ -73,11 +71,10 @@ export const EpisodeController = {
         }
     },
     update: async (req, res) => {
-        console.log(req.params.id);
-
+       
 
         try {
-            console.log(req.params.id);
+        
             const data = await EpisodeService.update(req.params.id, req.body);
             if (!data) {
                 return httpResponse.NOT_FOUND(res, data)

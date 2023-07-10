@@ -12,7 +12,6 @@ export const SeriesService = {
 
         const seriess = await SeriesModel.find()
 
-        console.log(seriess);
         for (const series of seriess) {
 
             if (series.id === id) {
@@ -41,12 +40,7 @@ export const SeriesService = {
         return data;
     },
     getEpisodes: async (id) => {
-        console.log(id);
-
-        // const data = await EpisodeModel.find();
-        // return data;
-
-
+       
 
 
         const data = await SeriesModel.aggregate([
@@ -93,7 +87,7 @@ export const SeriesService = {
         if (data.length == 0) {
             const data = SeriesModel.create(body);
             // const token = jwt.sign(body, secretKey);
-            console.log('data');
+       
             return data;
         }
         else {
@@ -118,13 +112,13 @@ export const SeriesService = {
 
         const seriess = await SeriesModel.find()
 
-        console.log(seriess);
+       
         for (const series of seriess) {
 
             if (series.id === id) {
                 const series = await SeriesModel.findById(id);
 
-                console.log(series);
+               
                 if (series) {
                     if (body.name) {
                         series.name = body.name;

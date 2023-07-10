@@ -8,8 +8,6 @@ export const FileService = {
     get: async (id) => {
 
         const genres = await FileModel.find()
-
-        console.log(genres);
         for (const genre of genres) {
 
             if (genre.id === id) {
@@ -73,14 +71,12 @@ export const FileService = {
     },
     add: async (body) => {
         let data;
-        // console.log(body);
 
         data = await FileModel.find({ orignal_name: body.orignal_name });
 
         if (data.length == 0) {
 
             const data =await FileModel.create(body);
-            console.log(data);
             return data;
         }
         else {
@@ -105,13 +101,12 @@ export const FileService = {
 
         const genres = await FileModel.find()
 
-        console.log(genres);
+     
         for (const genre of genres) {
 
             if (genre.id === id) {
                 const genre = await FileModel.findById(id);
 
-                console.log(genre);
                 if (genre) {
                     if (body.orignal_name) {
                         genre.orignal_name = body.orignal_name;

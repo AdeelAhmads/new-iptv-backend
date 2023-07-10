@@ -14,7 +14,6 @@ export const UserService = {
 
 		const users = await UserModel.find()
 
-		console.log(users);
 		for (const user of users) {
 
 			if (user.id === id) {
@@ -28,11 +27,8 @@ export const UserService = {
 	add: async (body) => {
 		let data;
 		data = await UserModel.find({ email: body.email });
-
-		console.log(data.length);
 		if (data.length == 0) {
-			console.log('condition is true');
-
+			
 			const data = await UserModel.create(body);
 			// const token = jwt.sign(body, config.env.jwtSecret);
 
@@ -41,7 +37,7 @@ export const UserService = {
 			data.password = hashedPassword;
 
 			UserModel.create(data);
-			console.log(data);
+		
 			return data;
 		}
 
@@ -73,7 +69,7 @@ export const UserService = {
 
 		const users = await UserModel.find()
 
-		// console.log(users);
+		
 		for (const user of users) {
 
 			if (user.id === id) {
@@ -81,18 +77,18 @@ export const UserService = {
 
 				const user = await UserModel.findById(id);
 
-				console.log(user);
+				
 				if (user) {
 					if (body.first_name) {
-						console.log(body.first_name);
+						
 						user.first_name = body.first_name;
 					}
 					if (body.last_name) {
-						console.log(body.last_name);
+					
 						user.last_name = body.last_name;
 					}
 					if (body.password) {
-						console.log(body.password);
+					
 						const hashedPassword = passwordHash.generate(body.password);
 						delete user.password;
 						user.password = hashedPassword;
@@ -120,9 +116,7 @@ export const UserService = {
 
 		for (const user of users) {
 			if (user.email === body.email) {
-				console.log(user);
-				console.log(body.password);
-				console.log(user.password);
+		
 				if (passwordHash.verify(body.password, user.password)) {
 
 					const token = jwt.sign(body, config.env.jwtSecret);

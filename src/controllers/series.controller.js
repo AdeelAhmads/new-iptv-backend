@@ -5,7 +5,7 @@ export const SeriesController = {
     getAll: async (req, res) => {
         try {
             const data = await SeriesService.getAll();
-            console.log(data);
+        
 
             return httpResponse.SUCCESS(res, data);
         } catch (error) {
@@ -57,7 +57,7 @@ export const SeriesController = {
 
     add: async (req, res) => {
         try {
-            console.log(req.body);
+          
 
             const data = await SeriesService.add(req.body);
             if(data=="This series is already available"){
@@ -72,7 +72,7 @@ export const SeriesController = {
     },
     delete: async (req, res) => {
         try {
-            console.log(req.params.id);
+          
 
             const data = await SeriesService.delete(req.params.id);
             // const data = await SeriesService.get(req.params.id);
@@ -87,11 +87,11 @@ export const SeriesController = {
         }
     },
     update: async (req, res) => {
-        console.log(req.params.id);
+       
 
 
         try {
-            console.log(req.params.id);
+         
             const data = await SeriesService.update(req.params.id, req.body);
             if (!data) {
                 return httpResponse.NOT_FOUND(res, data)

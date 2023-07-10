@@ -5,8 +5,7 @@ export const FileController = {
     getAll: async (req, res) => {
         try {
             const data = await FileService.getAll();
-            console.log(data);
-
+         
             return httpResponse.SUCCESS(res, data);
         } catch (error) {
             return httpResponse.INTERNAL_SERVER_ERROR(res, error);
@@ -43,7 +42,7 @@ export const FileController = {
 
     add: async (req, res) => {
         try {
-            console.log(req.body);
+        
 
             const data = await FileService.add(req.body);
             if (data == "This episode is already available") {
@@ -58,8 +57,7 @@ export const FileController = {
     },
     delete: async (req, res) => {
         try {
-            console.log(req.params.id);
-
+       
             const data = await FileService.delete(req.params.id);
             // const data = await FileService.get(req.params.id);
             if (!data) {
@@ -73,11 +71,10 @@ export const FileController = {
         }
     },
     update: async (req, res) => {
-        console.log(req.params.id);
 
 
         try {
-            console.log(req.params.id);
+           
             const data = await FileService.update(req.params.id, req.body);
             if (!data) {
                 return httpResponse.NOT_FOUND(res, data)

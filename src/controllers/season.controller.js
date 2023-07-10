@@ -5,8 +5,7 @@ export const SeasonController = {
     getAll: async (req, res) => {
         try {
             const data = await SeasonService.getAll();
-            console.log(data);
-
+          
             return httpResponse.SUCCESS(res, data);
         } catch (error) {
             return httpResponse.INTERNAL_SERVER_ERROR(res, error);
@@ -43,8 +42,7 @@ export const SeasonController = {
 
     add: async (req, res) => {
         try {
-            console.log(req.body);
-
+       
             const data = await SeasonService.add(req.body);
             if(data=="This season is already available"){
                 return httpResponse.CONFLICT(res, data);
@@ -58,8 +56,7 @@ export const SeasonController = {
     },
     delete: async (req, res) => {
         try {
-            console.log(req.params.id);
-
+        
             const data = await SeasonService.delete(req.params.id);
             // const data = await SeasonService.get(req.params.id);
             if (!data) {
@@ -73,11 +70,9 @@ export const SeasonController = {
         }
     },
     update: async (req, res) => {
-        console.log(req.params.id);
-
 
         try {
-            console.log(req.params.id);
+          
             const data = await SeasonService.update(req.params.id, req.body);
             if (!data) {
                 return httpResponse.NOT_FOUND(res, data)

@@ -11,7 +11,7 @@ export const GenreService = {
 
         const genres = await GenreModel.find()
 
-        console.log(genres);
+        
         for (const genre of genres) {
 
             if (genre.id === id) {
@@ -139,8 +139,6 @@ export const GenreService = {
 
         if (data.length == 0) {
             const data = GenreModel.create(body);
-            // const token = jwt.sign(body, secretKey);
-            console.log('data');
             return data;
         }
         else {
@@ -165,13 +163,11 @@ export const GenreService = {
 
         const genres = await GenreModel.find()
 
-        console.log(genres);
         for (const genre of genres) {
 
             if (genre.id === id) {
                 const genre = await GenreModel.findById(id);
 
-                console.log(genre);
                 if (genre) {
                     if (body.name) {
                         genre.name = body.name;

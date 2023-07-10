@@ -9,7 +9,6 @@ export const EpisodeService = {
 
         const episodes = await EpisodeModel.find()
 
-        console.log(episodes);
         for (const episode of episodes) {
 
             if (episode.id === id) {
@@ -56,7 +55,7 @@ export const EpisodeService = {
      
         const episodes = await EpisodeModel.find()
 
-        // console.log(users);
+
         for (const episode of episodes) {
 
             if (episode.id === id) {
@@ -70,14 +69,13 @@ export const EpisodeService = {
 
         const episodes = await EpisodeModel.find()
 
-        console.log(episodes);
+     
 
         for (const episode of episodes) {
 
             if (episode.id === id) {
                 const episode = await EpisodeModel.findById(id);
 
-                console.log(episode);
 
                 if (episode) {
                     if (body.season_id) {

@@ -122,7 +122,7 @@ export const StreamController = {
 
 
             const data = await StreamService.delete(req.params.id);
-            
+
             // const data = awaitStreamService.get(req.params.id);
             if (!data) {
                 return httpResponse.NOT_FOUND(res, data)
@@ -135,11 +135,11 @@ export const StreamController = {
         }
     },
     update: async (req, res) => {
-        console.log(req.params.id);
+       
 
 
         try {
-            console.log(req.params.id);
+          
             const data = await StreamService.update(req.params.id, req.body);
             if (!data) {
                 return httpResponse.NOT_FOUND(res, data)

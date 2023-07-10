@@ -8,8 +8,6 @@ export const GenreSeriesService = {
     get: async (id) => {
 
         const genres = await GenreSeriesModel.find()
-
-        console.log(genres);
         for (const genre of genres) {
 
             if (genre.id === id) {
@@ -45,13 +43,13 @@ export const GenreSeriesService = {
 
         const genres = await GenreSeriesModel.find()
 
-        console.log(genres);
+      
         for (const genre of genres) {
 
             if (genre.id === id) {
                 const genre = await GenreSeriesModel.findById(id);
 
-                console.log(genre);
+               
                 if (genre) {
                     if (body.genre_id) {
                         genre.genre_id = body.genre_id;

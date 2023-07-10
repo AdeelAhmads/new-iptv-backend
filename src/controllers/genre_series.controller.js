@@ -5,7 +5,6 @@ export const GenreSeriesController = {
     getAll: async (req, res) => {
         try {
             const data = await GenreSeriesService.getAll();
-            console.log(data);
 
             return httpResponse.SUCCESS(res, data);
         } catch (error) {
@@ -43,7 +42,6 @@ export const GenreSeriesController = {
 
     add: async (req, res) => {
         try {
-            console.log(req.body);
 
             const data = await GenreSeriesService.add(req.body);
             if (data == "This episode is already available") {
@@ -58,8 +56,7 @@ export const GenreSeriesController = {
     },
     delete: async (req, res) => {
         try {
-            console.log(req.params.id);
-
+            
             const data = await GenreSeriesService.delete(req.params.id);
             // const data = await GenreSeriesService.get(req.params.id);
             if (!data) {
@@ -73,11 +70,9 @@ export const GenreSeriesController = {
         }
     },
     update: async (req, res) => {
-        console.log(req.params.id);
-
 
         try {
-            console.log(req.params.id);
+
             const data = await GenreSeriesService.update(req.params.id, req.body);
             if (!data) {
                 return httpResponse.NOT_FOUND(res, data)

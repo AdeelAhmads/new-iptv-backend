@@ -5,7 +5,6 @@ export const GenreController = {
     getAll: async (req, res) => {
         try {
             const data = await GenreService.getAll();
-            console.log(data);
 
             return httpResponse.SUCCESS(res, data);
         } catch (error) {
@@ -53,8 +52,7 @@ export const GenreController = {
     },
     add: async (req, res) => {
         try {
-            console.log(req.body);
-
+     
             const data = await GenreService.add(req.body);
             if(data=="This genre is already available"){
                 return httpResponse.CONFLICT(res, data);
@@ -68,7 +66,7 @@ export const GenreController = {
     },
     delete: async (req, res) => {
         try {
-            console.log(req.params.id);
+     
 
             const data = await GenreService.delete(req.params.id);
             if (!data) {
@@ -82,11 +80,10 @@ export const GenreController = {
         }
     },
     update: async (req, res) => {
-        console.log(req.params.id);
-
+   
 
         try {
-            console.log(req.params.id);
+         
             const data = await GenreService.update(req.params.id, req.body);
             if (!data) {
                 return httpResponse.NOT_FOUND(res, data)
